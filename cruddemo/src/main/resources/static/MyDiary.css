@@ -1,0 +1,88 @@
+body{
+    background-image: url("MyDiary.jpg");
+    background-size: cover;
+
+}
+/* General Styles for the Form Container */
+.tm-item-container {
+    position: fixed;  /* Fixed positioning relative to the viewport */
+    bottom: 1rem;     /* Place the form 1rem from the bottom */
+    right: 1rem;      /* Place the form 1rem from the right */
+    background-color: rgb(248, 131, 121);  /* Background color changed to rgb(248, 131, 121) */
+    padding: 2rem 2rem;  /* Adjust padding inside the form container */
+    margin: 0;  /* Remove any default margin */
+    border-radius: 1.25rem;  /* Rounded corners */
+    color: white;  /* White text color */
+    width: 350px;  /* Increased width of the form */
+    max-width: 100%;  /* Ensure the form does not exceed the viewport width */
+    z-index: 1000;  /* Ensure the form is above other elements */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);  /* Optional: Add some shadow for depth */
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;  /* Stack form elements vertically */
+    gap: 1.5rem;  /* Space between form elements */
+}
+
+/* Input Fields and Textarea Styling */
+input[type="text"], input[type="password"], input[type="date"],textarea {
+    width: 100%;  /* Full width of the form */
+    background-color: transparent;  /* Transparent background */
+    color: black;  /* Black text for better contrast */
+    border: 2px solid transparent;  /* Transparent border */
+    border-bottom: 2px solid #f5e1a4;  /* Cream-colored bottom border */
+    padding: 0.75rem 1rem;  /* Padding inside input fields */
+    font-size: 1rem;  /* Font size */
+    transition: border-color 0.3s ease-in-out;  /* Smooth transition for focus */
+}
+
+input[type="text"]:focus, input[type="password"]:focus,input[type="date"]:focus, textarea:focus {
+    border-color: #f5e1a4;  /* Cream-colored border on focus */
+    outline: none;  /* Remove the default focus outline */
+}
+
+/* Placeholder Styling */
+input::placeholder, textarea::placeholder {
+    color: rgba(0, 0, 0, 0.5);  /* Light grey for placeholder text */
+}
+
+/* Submit Button Styling */
+button[type="submit"] {
+    background-color: transparent;  /* Transparent background */
+    color: black;  /* Black text */
+    font-size: 1.125rem;  /* Larger text for the button */
+    padding: 0.75rem 2rem;  /* Button padding */
+    border: 2px solid #f5e1a4;  /* Cream border */
+    border-radius: 0.5rem;  /* Rounded corners */
+    cursor: pointer;  /* Pointer cursor on hover */
+    transition: color 0.3s, border-color 0.3s;  /* Smooth transition for hover effect */
+}
+
+button[type="submit"]:hover {
+    color: #f5e1a4;  /* Cream color on hover */
+    border-color: #f5e1a4;  /* Border color changes to cream on hover */
+}
+
+/* Text Alignment */
+.text-right {
+    text-align: right;  /* Align the submit button to the right */
+}
+
+/* Optional: Responsive Design */
+@media (max-width: 768px) {
+    .tm-item-container {
+        padding: 1.5rem 1.5rem;  /* Adjust padding for smaller screens */
+        width: 90%;  /* Make the form width 90% of the screen on smaller devices */
+    }
+
+    input[type="text"], input[type="password"], textarea {
+        padding: 0.5rem 1rem;  /* Adjust input padding for smaller screens */
+    }
+
+    button[type="submit"] {
+        font-size: 1rem;  /* Smaller button font size for mobile */
+        padding: 0.5rem 1.5rem;  /* Adjust padding on mobile */
+    }
+}

@@ -1,0 +1,85 @@
+/* Body background image */
+body {
+    background-image: url("textbg.jpg");
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* General reset for margins and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* Header styling: Position the current date at the top right */
+header {
+    text-align: right;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+}
+
+/* Main content styling */
+main {
+    margin-top: 50px;  /* Space for the fixed header */
+    margin-left: 450px;
+    margin-right: 20px;
+    padding: 20px;
+    text-align: center;
+    height: calc(100% - 100px);  /* Adjusting the height to fit content and buttons */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Textarea styling */
+textarea {
+      /* Text area width leaves 150px space from the right */
+    height: 700px;
+    width:900px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px blanchedalmond;
+    margin-bottom: 10px;
+    resize: none;
+    box-sizing: border-box;
+    background-color:rgb(252, 228, 193);  /* Ensures padding and border are included in the width */
+}
+
+/* Button container styling */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+/* Button styling */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+
+button:hover {
+    background-color: #007BFF;
+    color: white;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
