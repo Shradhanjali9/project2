@@ -1,0 +1,357 @@
+# project2
+README: MyDiary Web Application using spring boot and PostgreSQL
+
+Overview
+        (use “Shradhanjali” as userid and  “DearGoldy”  as password)
+FRONTEND
+This project is a simple web-based diary application that allows a user to log in, write daily entries, save and edit them. It consists of two main pages:
+1.	Login Page: Where users authenticate with a User ID and password.(use “Shradhanjali” as userid and “DearGoldy”  password)
+2.	Text Editor Page: Where users can write, save, edit, and clear diary entries.
+The application stores the user ID and password temporarily using localStorage and displays the current date on the text editor page. It provides a simple interface for saving, editing, and clearing diary text.
+Features
+•	User Authentication: Users can enter their User ID and password. If the credentials are correct, they are redirected to the diary entry page.
+•	Text Editor: A rich text area to write about the day's events.
+•	Save Feature: Save the entered text, which gets disabled after saving to prevent further edits. The user can re-enable editing via the edit button.
+•	Clear Feature: Clears the text area content if the user wants to start over.
+•	Current Date: Displays the current date at the top of the text editor page for context.
+Files Included
+1.	index.html: The login page where users authenticate.
+2.	textpage.html: The text editor page where users write and manage diary entries.
+3.	MyDiary.css: The CSS file for styling the login page.
+4.	textpage.css: The CSS file for styling the text editor page.
+Installation
+1.	Download the Repository: Clone or download the repository to your local machine.
+2.	git clone <repository-url>
+3.	Directory Structure:
+o	The project directory should have the following structure:
+o	/project-root
+o	├── index.html
+o	├── textpage.html
+o	├── MyDiary.css
+o	├── textpage.css
+4.	Open the Files in a Browser:
+o	Simply open index.html in a browser to start using the application.
+How It Works
+1. Login Page (index.html)
+•	The login page asks for a User ID, Password, and Date.
+•	When the user submits the form, the handleFormSubmit JavaScript function is triggered. 
+o	If the User ID and Password are correct (i.e., Shradhanjali and DearGoldy), the user is redirected to the Text Editor Page (textpage.html).
+o	If the credentials are incorrect, an alert is shown: Write correct User ID and Password!.
+o	The User ID and Password are stored temporarily using localStorage for demonstration purposes.
+2. Text Editor Page (textpage.html)
+•	The current date is displayed at the top of the page.
+•	The user can write a diary entry in the text area.
+•	There are three buttons with the following functionalities: 
+o	Save: Saves the diary entry and disables the text area. The Edit button becomes active.
+o	Edit: Re-enables the text area so the user can edit the saved entry.
+o	Clear: Clears the text area.
+3. CSS (Styling)
+•	MyDiary.css: Contains styling for the login page. 
+o	Includes styles for the form elements and background.
+•	textpage.css: Contains styling for the text editor page. 
+o	Styles the text area, buttons, and current date display.
+JavaScript Functionality
+Login Page (index.html)
+•	handleFormSubmit(event): Handles form submission, validates credentials, stores user data in localStorage, and redirects to the text editor page.
+Text Editor Page (textpage.html)
+•	saveButton: Saves the text entered in the text area, disables the text area, and enables the Edit button.
+•	editButton: Re-enables the text area for editing.
+•	clearButton: Clears the contents of the text area.
+Current Date Display
+•	The current date is dynamically fetched using new Date().toLocaleDateString() and displayed in the header.
+BACKEND
+A spring Boot application (CRUD Demo) that manages interactions with the PostgreSQL database. The backend allows users to:
+o	Save diary entries.
+o	Retrieve diary entries.
+o	Edit or delete diary entries.
+2.	Database: PostgreSQL is used as the relational database to store and manage the diary entries.
+This README includes detailed instructions for setting up the application with PostgreSQL and the Spring Boot backend.
+Features
+•	User Authentication: Simple login page with hardcoded credentials.
+•	Text Editor: Write and save diary entries with an option to edit and clear text.
+•	Backend Support: Store and manage diary entries in a PostgreSQL database.
+•	CRUD Operations: The Spring Boot backend allows creating, retrieving, updating, and deleting entries.
+Files Included
+1.	Frontend:
+o	index.html: Login page for user authentication.
+o	textpage.html: Text editor page where users can create and manage diary entries.
+o	MyDiary.css: Styling for the login page.
+o	textpage.css: Styling for the text editor page.
+2.	Backend:
+o	curddemo: A Spring Boot application with CRUD operations for managing diary entries.
+o	application.properties: Configuration file for Spring Boot application and PostgreSQL connection.
+3.	Database:
+o	diary.sql: PostgreSQL database schema for storing diary entries.
+Requirements
+•	Java: Version 8 or higher.
+•	Maven: For building the Spring Boot application.
+•	PostgreSQL: A PostgreSQL instance to store data.
+•	IDE: IntelliJ IDEA, Eclipse, or any preferred Java IDE.
+Installation and Setup
+1. Setting Up PostgreSQL Database
+1.	Install PostgreSQL:
+o	Download and install PostgreSQL from here.
+2.	Create Database:
+o	Log into PostgreSQL and create a database:
+3.	CREATE DATABASE mydiary;
+4.	Run Database Schema:
+o	Run the following SQL script to create the necessary table for storing diary entries:
+5.	CREATE TABLE diary_entries (
+6.	    id SERIAL PRIMARY KEY,
+7.	    user_id VARCHAR(255) NOT NULL,
+8.	    password VARCHAR(255) NOT NULL,
+9.	    date DATE NOT NULL,
+10.	    content TEXT
+11.	);
+12.	Test Database Connection:
+o	Make sure the database is running and accessible.
+2. Setting Up Spring Boot Backend
+1.	Clone the Spring Boot Project:
+o	Clone the Spring Boot backend repository:
+2.	git clone <repository-url>
+3.	cd curddemo
+4.	Update application.properties:
+o	In the src/main/resources/application.properties file, configure the PostgreSQL database connection:
+5.	spring.datasource.url=jdbc:postgresql://localhost:5432/mydiary
+6.	spring.datasource.username=postgres
+7.	spring.datasource.password=your-password
+8.	spring.jpa.hibernate.ddl-auto=update
+9.	spring.jpa.show-sql=true
+10.	spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+Replace your-password with the actual PostgreSQL password.
+11.	Build and Run the Application:
+o	Build and run the Spring Boot application:
+12.	mvn spring-boot:run
+The backend server will start running on http://localhost:8080.
+3. Frontend Setup
+1.	Clone the Frontend Files:
+o	Clone or download the frontend files (HTML, CSS, and JS files).
+2.	Update Frontend API Endpoints:
+o	In index.html and textpage.html, update the API endpoints to interact with the Spring Boot backend:
+3.	// In the save function, for example:
+4.	fetch('http://localhost:8080/api/diary', {
+5.	    method: 'POST',
+6.	    headers: {
+7.	        'Content-Type': 'application/json',
+8.	    },
+9.	    body: JSON.stringify({
+10.	        userId: 'Shradhanjali',
+11.	        password: 'DearGoldy',
+12.	        date: new Date(),
+13.	        content: textArea.value
+14.	    })
+15.	})
+16.	Open Frontend:
+o	Open index.html in a web browser to begin using the application.
+Spring Boot Backend: CRUD Operations
+The Spring Boot application handles all CRUD operations for the diary entries. Below is a breakdown of the API endpoints:
+1. Create Entry (Save Diary Entry)
+•	URL: /api/diary
+•	Method: POST
+•	Request Body:
+•	{
+•	    "userId": "Shradhanjali",
+•	    "password": "DearGoldy",
+•	    "date": "2025-01-01",
+•	    "content": "Diary content goes here."
+•	}
+•	Response: The saved entry will be returned in the response.
+2. Get Entry (Get Diary Entries)
+•	URL: /api/diary/{id}
+•	Method: GET
+•	Response: Returns a diary entry with the specified ID.
+3. Update Entry (Edit Diary Entry)
+•	URL: /api/diary/{id}
+•	Method: PUT
+•	Request Body:
+•	{
+•	    "userId": "Shradhanjali",
+•	    "password": "DearGoldy",
+•	    "date": "2025-01-01",
+•	    "content": "Updated diary content."
+•	}
+•	Response: The updated diary entry is returned.
+4. Delete Entry
+•	URL: /api/diary/{id}
+•	Method: DELETE
+•	Response: Confirmation message indicating the entry was deleted.
+Project Directory Structure
+/project-root
+├── /frontend
+│   ├── index.html
+│   ├── textpage.html
+│   ├── MyDiary.css
+│   └── textpage.css
+└── /backend
+    ├── /src
+    │   ├── /main
+    │   │   ├── /java
+    │   │   │   ├── com/example/curddemo
+    │   │   │   │   ├── DiaryController.java
+    │   │   │   │   ├── DiaryService.java
+    │   │   │   │   ├── DiaryRepository.java
+    │   │   └── /resources
+    │   │       └── application.properties
+    ├── pom.xml
+└── /database
+    └── diary.sql
+Future Enhancements
+•	Authentication: Implement a real authentication system using JWT or session-based authentication for security.
+•	Responsive Design: Make the frontend responsive to support mobile devices.
+•	Data Validation: Add server-side validation to ensure data integrity and security.
+•	Error Handling: Improve error handling for both frontend and backend.
+1.	Backend:
+o	curddemo: A Spring Boot application with CRUD operations for managing diary entries.
+o	application.properties: Configuration file for Spring Boot application and PostgreSQL connection.
+2.	Database:
+o	diary.sql: PostgreSQL database schema for storing diary entries.
+Requirements
+•	Java: Version 8 or higher.
+•	Maven: For building the Spring Boot application.
+•	PostgreSQL: A PostgreSQL instance to store data.
+•	IDE: IntelliJ IDEA, Eclipse, or any preferred Java IDE.
+Installation and Setup
+1. Setting Up PostgreSQL Database
+1.	Install PostgreSQL:
+o	Download and install PostgreSQL from here.
+2.	Create Database:
+o	Log into PostgreSQL and create a database:
+sql
+Copy code
+CREATE DATABASE mydiary;
+3.	Run Database Schema:
+o	Run the following SQL script to create the necessary table for storing diary entries:
+sql
+Copy code
+CREATE TABLE diary_entries (
+    id SERIAL PRIMARY KEY,
+    user_id VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    content TEXT
+);
+4.	Test Database Connection:
+o	Make sure the database is running and accessible.
+2. Setting Up Spring Boot Backend
+1.	Clone the Spring Boot Project:
+o	Clone the Spring Boot backend repository:
+bash
+Copy code
+git clone <repository-url>
+cd curddemo
+2.	Update application.properties:
+o	In the src/main/resources/application.properties file, configure the PostgreSQL database connection:
+properties
+Copy code
+spring.datasource.url=jdbc:postgresql://localhost:5432/mydiary
+spring.datasource.username=postgres
+spring.datasource.password=your-password
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+Replace your-password with the actual PostgreSQL password.
+3.	Build and Run the Application:
+o	Build and run the Spring Boot application:
+bash
+Copy code
+mvn spring-boot:run
+The backend server will start running on http://localhost:8080.
+3. Frontend Setup
+1.	Clone the Frontend Files:
+o	Clone or download the frontend files (HTML, CSS, and JS files).
+2.	Update Frontend API Endpoints:
+o	In index.html and textpage.html, update the API endpoints to interact with the Spring Boot backend:
+javascript
+Copy code
+// In the save function, for example:
+fetch('http://localhost:8080/api/diary', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        userId: 'Shradhanjali',
+        password: 'DearGoldy',
+        date: new Date(),
+        content: textArea.value
+    })
+})
+3.	Open Frontend:
+o	Open index.html in a web browser to begin using the application.
+Spring Boot Backend: CRUD Operations
+The Spring Boot application handles all CRUD operations for the diary entries. Below is a breakdown of the API endpoints:
+1. Create Entry (Save Diary Entry)
+•	URL: /api/diary
+•	Method: POST
+•	Request Body:
+json
+Copy code
+{
+    "userId": "Shradhanjali",
+    "password": "DearGoldy",
+    "date": "2025-01-01",
+    "content": "Diary content goes here."
+}
+•	Response: The saved entry will be returned in the response.
+2. Get Entry (Get Diary Entries)
+•	URL: /api/diary/{id}
+•	Method: GET
+•	Response: Returns a diary entry with the specified ID.
+3. Update Entry (Edit Diary Entry)
+•	URL: /api/diary/{id}
+•	Method: PUT
+•	Request Body:
+json
+Copy code
+{
+    "userId": "Shradhanjali",
+    "password": "DearGoldy",
+    "date": "2025-01-01",
+    "content": "Updated diary content."
+}
+•	Response: The updated diary entry is returned.
+4. Delete Entry
+•	URL: /api/diary/{id}
+•	Method: DELETE
+•	Response: Confirmation message indicating the entry was deleted.
+Project Directory Structure
+bash
+Copy code
+/project-root
+├── /frontend
+│   ├── index.html
+│   ├── textpage.html
+│   ├── MyDiary.css
+│   └── textpage.css
+└── /backend
+    ├── /src
+    │   ├── /main
+    │   │   ├── /java
+    │   │   │   ├── com/example/curddemo
+    │   │   │   │   ├── DiaryController.java
+    │   │   │   │   ├── DiaryService.java
+    │   │   │   │   ├── DiaryRepository.java
+    │   │   └── /resources
+    │   │       └── application.properties
+    ├── pom.xml
+└── /database
+    └── diary.sql
+Future Enhancements
+•	Authentication: Implement a real authentication system using JWT or session-based authentication for security.
+•	Responsive Design: Make the frontend responsive to support mobile devices.
+•	Data Validation: Add server-side validation to ensure data integrity and security.
+•	Error Handling: Improve error handling for both frontend and backend.
+•	File Upload: Allow users to upload images or files with their diary entries
+
+Future Enhancements
+•	Persistent Data: Currently, data is only stored temporarily in localStorage. You can enhance the application by integrating with a database or using server-side storage for permanent data saving.
+•	User Registration: Add functionality to allow new users to register instead of using hardcoded credentials.
+•	Text Formatting: Add text formatting options such as bold, italic, and underline.
+•	Security: Currently, the password is stored in plain text and is not secured. Implement proper security measures if transitioning to a real-world app (e.g., hashing passwords).
+License
+This project is open source. You can modify and distribute it according to your needs.
+Contact
+For any questions or contributions, feel free to reach out to the project maintainer.
+________________________________________
+Enjoy using MyDiary! Happy journaling! 😊
+
